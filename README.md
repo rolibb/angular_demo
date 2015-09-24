@@ -1,5 +1,15 @@
 ### Prerequisites
 
+You must have ruby and its package manager (gem) installed.
+
+Mac OS X
+
+sudo gem install compass
+
+Windows
+
+gem install compass
+
 You must have node.js and its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
 
 ### Install Dependencies
@@ -20,3 +30,5 @@ It have preconfigured the project with a simple development web server.  The sim
 this server is:
 
 npm start
+
+Copy the url in the browser [http://localhost:3000/]
