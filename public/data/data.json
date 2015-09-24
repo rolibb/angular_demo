@@ -1,0 +1,167 @@
+[
+	{
+		"changeList": "Tenrox-R1-1235 ",
+		"owner": "",
+		"time": "2014-06-21T03:26:59.000Z",
+		"state": "Pending",
+		"metrics": "",
+		"build": "",
+		"unitTest": "",
+		"funtionalTest": "",
+		"result": "",
+		"viewDetail": false,
+		"typeBuild": "computer"
+	},
+	{
+		"changeList": "432462",
+		"owner": "jtuck",
+		"time": "2014-06-21T03:27:25.000Z",
+		"state": "Running",
+		"metrics": "",
+		"build": "",
+		"unitTest": "",
+		"funtionalTest": "",
+		"result": "",
+		"viewDetail": false,
+		"typeBuild": "wall"
+	},
+	{
+		"changeList": "432461",
+		"owner": "samy",
+		"time": "2014-06-21T03:27:25.000Z",
+		"state": "Rejected",
+		"metrics": {
+			"test": 78,
+			"maintaianability": 53,
+			"secutiry": 64,
+			"workmanship": 72
+		},
+		"build": {
+			"date": "2014-06-21T03:33:29.000Z"
+		},
+		"unitTest": {
+			"passed_1": {
+				"p": 7,
+				"value": "142"
+			},
+			"passed_2": {
+				"p": 3,
+				"value": "10"
+			},
+			"passedTotal": 73,
+			"convered": 76
+		},
+		"funtionalTest": {
+			"passed_1": {
+				"p": 6,
+				"value": "4321"
+			},
+			"passed_2": {
+				"p": 4,
+				"value": "2145"
+			},
+			"passedTotal": 68,
+			"convered": 23
+		},
+		"result": {},
+		"viewDetail": false,
+		"typeBuild": "wall"
+	},
+	{
+		"changeList": "Tenrox-R1-1234",
+		"owner": "",
+		"time": "2014-06-21T03:33:29.000Z",
+		"state": "Complete",
+		"metrics": {
+			"test": 78,
+			"maintaianability": 53,
+			"secutiry": 64,
+			"workmanship": 72
+		},
+		"build": {
+			"date": "2014-06-21T03:33:29.000Z"
+		},
+		"unitTest": {
+			"passed_1": {
+				"p": 7,
+				"value": "142"
+			},
+			"passed_2": {
+				"p": 3,
+				"value": "10"
+			},
+			"passedTotal": 73,
+			"convered": 76
+		},
+		"funtionalTest": {
+			"passed_1": {
+				"p": 4,
+				"value": "4321"
+			},
+			"passed_2": {
+				"p": 6,
+				"value": "2145"
+			},
+			"passedTotal": 68,
+			"convered": 23
+		},
+		"result": {},
+		"viewDetail": false,
+		"typeBuild": "computer"
+	},
+	{
+		"changeList": "432460",
+		"owner": "samy",
+		"time": "2014-06-21T12:16:17.000Z",
+		"state": "Rejected",
+		"metrics": "",
+		"build": "",
+		"unitTest": "",
+		"funtionalTest": "",
+		"result": "",
+		"viewDetail": false,
+		"typeBuild": "wall"
+	},
+	{
+		"changeList": "432459",
+		"owner": "samy",
+		"time": "2014-06-21T04:08:13.000Z",
+		"state": "Accepted",
+		"metrics": {
+			"test": 78,
+			"maintaianability": 53,
+			"secutiry": 64,
+			"workmanship": 72
+		},
+		"build": {
+			"date": "2014-06-21T03:33:29.000Z"
+		},
+		"unitTest": {
+			"passed_1": {
+				"p": 7,
+				"value": "142"
+			},
+			"passed_2": {
+				"p": 3,
+				"value": "10"
+			},
+			"passedTotal": 73,
+			"convered": 76
+		},
+		"funtionalTest": {
+			"passed_1": {
+				"p": 4,
+				"value": "4321"
+			},
+			"passed_2": {
+				"p": 6,
+				"value": "2145"
+			},
+			"passedTotal": 68,
+			"convered": 23
+		},
+		"result": {},
+		"viewDetail": false,
+		"typeBuild": "wall"
+	}
+]

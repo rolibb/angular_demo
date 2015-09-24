@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  	<head>
+  	<meta charset="UTF-8">
+  	<meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/main.css' />
+  	</head>
+  	<body>
+		<div class="container">
+			<div ng-view></div>
+		</div>
+
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/angular-google-chart/ng-google-chart.js"></script>
+		<script src="/app/app.js"></script>
+		<script src="/app/build/build.controller.js"></script>
+		<script src="/app/build/build.service.js"></script>
+  </body>
+</html>

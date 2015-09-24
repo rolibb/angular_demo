@@ -1,0 +1,241 @@
+<div class="box-list">
+	<div class="list-row">
+		<div class="pull-left col-row col-4 bold">ChangeList / Build</div>
+		<div class="pull-left col-1 text-center bold">Owner</div>
+		<div class="pull-left col-4 text-center bold">Time Started</div>
+		<div class="pull-left col-1 text-center bold">State</div>
+		<div class="pull-left col-1 text-center bold">Metrics</div>
+		<div class="pull-left col-1 text-center bold">Build</div>
+		<div class="pull-left col-1 text-center bold">Unit Test</div>
+		<div class="pull-left col-3 text-center bold">Functional Test</div>
+	</div>
+	<div class="list-row" ng-class="trClass(build)" ng-repeat="build in builds | orderBy:'build.time'">
+		<div class="pull-left col-row col-4">
+			<ul class="list-inline">
+        		<li ng-if="build.typeBuild == 'computer' && build.state == 'Pending'">
+        			<img src="/images/cumputer-pending.png" alt="">
+        		</li>
+        		<li ng-if="build.typeBuild == 'computer' && build.state == 'Complete'">
+        			<img src="/images/cumputer-complete.png" alt="">
+        		</li>
+        		<li ng-if="build.typeBuild == 'computer' && build.state == 'Accepted'">
+        			<img src="/images/cumputer-complete.png" alt="">
+        		</li>
+        		<li ng-if="build.typeBuild == 'wall' && build.state == 'Pending'">
+        			<img src="/images/cumputer-pending.png" alt="">
+        		</li>
+        		<li ng-if="build.typeBuild == 'wall' && build.state == 'Running'">
+        			<img src="/images/wall-running.png" alt="">
+        		</li>
+        		<li ng-if="build.typeBuild == 'wall' && build.state == 'Rejected'">
+        			<img src="/images/wall-rejected.png" alt="">
+        		</li>
+        		<li ng-if="build.typeBuild == 'wall' && build.state == 'Complete'">
+        			<img src="/images/wall-complete.png" alt="">
+        		</li>
+        		<li ng-if="build.typeBuild == 'wall' && build.state == 'Accepted'">
+        			<img src="/images/wall-complete.png" alt="">
+        		</li>
+        		<li ng-if="build.state == 'Pending'">
+        			{{build.changeList}}
+        		</li>
+        		<li ng-if="build.state == 'Running'">
+        			{{build.changeList}}
+        		</li>
+        		<li ng-if="build.state == 'Rejected' && build.build == '' && build.unitTest == '' && build.funtionalTest == ''">
+        			{{build.changeList}}
+        		</li>
+        		<li ng-if="build.state == 'Rejected' && build.build  && build.unitTest && build.funtionalTest">
+        			<a href="" ng-click="viewDetails(build)" title="{{build.titleDetail}}">{{build.changeList}}</a>
+        		</li>
+        		<li ng-if="build.state == 'Complete' || build.state == 'Accepted'">
+        			<a href="" ng-click="viewDetails(build)" title="{{build.titleDetail}}">{{build.changeList}}</a>
+        		</li>
+        	</ul>
+		</div>
+		<div class="pull-left col-row col-1 text-center">
+			{{build.owner}}
+		</div>
+		<div class="pull-left col-row col-4 text-center">
+			{{build.time | date:'MM/dd/yyyy HH:mm a' | lowercase}}
+		</div>
+		<div class="pull-left col-row col-1 text-center">
+			{{build.state}}
+		</div>
+		<div class="pull-left col-row col-1 text-center">
+			<span ng-if="build.state == 'Pending'" class="box-bg-default {{build.metrics.state | lowercase}}">
+        	</span>
+        	<span ng-if="build.state == 'Running'" class="box-bg-default running">
+        		<span class="bg-status bg-progress-bar" style="width: 50%; display: block;"></span>
+        	</span>
+        	<span ng-if="build.state == 'Rejected'" class="box-bg-default rejected" ng-show="build.showBuilds">
+        		<span class="bg-status"></span>
+        	</span>
+        	<span ng-if="build.state == 'Complete'" class="box-bg-default complete" ng-show="build.showBuilds">
+        		<span class="bg-status"></span>
+        	</span>
+        	<span ng-if="build.state == 'Accepted'" class="box-bg-default complete" ng-show="build.showBuilds">
+        		<span class="bg-status"></span>
+        	</span>
+		</div>
+		<div class="pull-left col-row col-1 text-center">
+			<span ng-if="build.build == ''" class="box-bg-default pending">
+        	</span>
+			<span ng-if="build.build" class="box-bg-default complete" ng-show="build.showBuilds">
+				<span class="bg-status"></span>
+        	</span>
+		</div>
+		<div class="pull-left col-row col-row col-1 text-center">
+			<span ng-if="build.unitTest == ''" class="box-bg-default pending">
+        	</span>
+			<span ng-if="build.unitTest" class="box-bg-default complete" ng-show="build.showBuilds">
+				<span class="bg-status"></span>
+        	</span>
+		</div>
+		<div class="pull-left col-row col-3 text-center">
+			<span ng-if="build.funtionalTest == ''" class="box-bg-default pending">
+        	</span>
+			<span ng-if="build.funtionalTest" class="box-bg-default complete" ng-show="build.showBuilds">
+				<span class="bg-status"></span>
+        	</span>
+		</div>
+		<div ng-if="build.state == 'Complete' || build.state == 'Accepted' || (build.state == 'Rejected' && build.build != '' && build.unitTest != '' && build.funtionalTest != '')" class="box-view-datails" ng-show='build.viewDetail'>
+			<div class="pull-left box-border-report {{build.state | lowercase}}">
+				<h5 class="title bold title-metric">Metrics</h5>
+				<ul class="list-inline view-datails-metrisc">
+					<li class="text-center">
+						<figure>
+							<img src="/images/arrows-up.png" alt="test">
+						</figure>
+						Test
+						<span>{{build.metrics.test}}</span>
+					</li>
+					<li class="text-center">
+						<figure>
+							<img src="/images/arrows-up.png" alt="Maintainability" ng-if="build.state == 'Complete' || build.state == 'Accepted'">
+							<img src="/images/arrow-bottom.png" alt="Maintainability" ng-if="build.state == 'Rejected' && build.build != '' && build.unitTest != '' && build.funtionalTest != ''">
+						</figure>
+						Maintainability
+						<span class="rigth">{{build.metrics.maintaianability}}</span>
+					</li>
+				</ul>
+				<ul class="list-inline view-datails-metrisc">
+					<li class="text-center">
+						<figure>
+							<img src="/images/arrow-right.png" alt="Security">
+						</figure>
+						Security
+						<span class="percentage-security">{{build.metrics.secutiry}}</span>
+					</li class="text-center">
+					<li class="text-center">
+						<figure>
+							<img src="/images/arrow-right.png" alt="Workmanship">
+						</figure>
+						Workmanship
+						<span class="percentage-workmanship">{{build.metrics.workmanship}}</span>
+					</li>
+				</ul>
+
+			</div>
+			<div class="pull-left box-border-report">
+				<h5 class="title bold">Build</h5>
+				<ul class="list-inline view-datails-build">
+					<li class="text-center">
+						<figure>
+							<img src="/images/computer-build.png" alt="test">
+						</figure>
+						<h5>Debug</h5>
+					</li>
+					<li class="text-center">
+						<figure>
+							<img src="/images/computer-build.png" alt="Maintainability">
+						</figure>
+						<h5>Release</h5>
+					</li>
+				</ul>
+				<p class="text-center">
+					{{build.build.date | date:'HH:mm a - MM/dd/yyyy ' | lowercase}}
+				</p>
+			</div>
+			<div class="pull-left box-border-report">
+				<h5 class="title title-relative bold">Unit Test</h5>
+				<div google-chart chart="build.chartUnitTest" class="pie-chart-go" style="height:150px; width:130px;"></div>
+				<div class="passed text-center">
+					<span>{{build.unitTest.passedTotal}}%</span><br>
+					<span>test passed</span>
+				</div>
+				<div class="covered">
+					<div class="box-progress-bar text-center">
+						<div class="bar-percentage" style="width: 50%">
+							<span class="bold">{{build.unitTest.convered}}%</span> <br>
+							code covered
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pull-left box-border-report">
+				<h5 class="title title-relative bold">Funtional Test</h5>
+				<div google-chart chart="build.chartOFuntionalTest" class="pie-chart-go" style="height:150px; width:130px;"></div>
+				<div class="passed text-center">
+					<span class="passed-funtional">{{build.funtionalTest.passedTotal}}%</span><br>
+					<span>test passed</span>
+				</div>
+				<div class="covered">
+					<div class="box-progress-bar text-center">
+						<div class="bar-percentage" style="width: 50%">
+							<span class="bold funtional">{{build.funtionalTest.convered}}%</span> <br>
+							code covered
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pull-left box-result-report">
+				<ul class="list-unstyled box-result text-center result-complete" ng-if="build.state == 'Complete'">
+					<li class="result">
+						Result:
+					</li>
+					<li>
+						<span>Complete</span>
+					</li>
+					<li class="deploy-to">
+						<button class="btn btn-primary btn-d-primary btn-sm">Deploy</button>
+						 &nbsp; &nbsp; To:
+						<select name="deploy" id="deploy">
+							<option value="production">Production</option>
+						</select>
+					</li>
+				</ul>
+				<ul class="list-unstyled text-center box-result result-accepted" ng-if="build.state == 'Accepted'">
+					<li class="result">
+						Result:
+					</li>
+					<li class="auto-merged">
+						Change Accepted <br>
+						<span>Auto-Merged</span>
+					</li>
+					<li>
+						<button class="btn btn-primary btn-d-primary btn-sm">
+							<img src="/images/search.png" alt="Maintainability"> &nbsp; &nbsp; Merged Build
+						</button>
+					</li>
+				</ul>
+				<ul class="list-unstyled box-result text-center result-rejected" ng-if="build.state == 'Rejected'">
+					<li class="result">
+						Result:
+					</li>
+					<li class="metrics-reduction">
+						Change Rejected <br>
+						<span>Metrics Reduction</span>
+					</li>
+					<li>
+						<button class="btn btn-primary btn-d-primary">
+							Find Issues
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</div>
+
